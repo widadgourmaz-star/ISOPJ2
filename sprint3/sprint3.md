@@ -514,10 +514,42 @@ Definim la configuració global i els recursos compartits, assegurant els permis
 
 <img width="643" height="512" alt="image" src="https://github.com/user-attachments/assets/304098e7-c25a-4379-9c78-18583a9ed15f" />
 
-
-
-
 <img width="851" height="469" alt="image" src="https://github.com/user-attachments/assets/6f1218f8-cd44-41de-b033-4d627e2d006d" />
+
+
+### NFS
+El NFS (Network File System) és un protocol que permet compartir fitxers a través d'una xarxa.
+
+Bàsicament, fa que una carpeta que està en un servidor remot sembli que està instal·lada directament al teu ordinador.
+Primer installem l'equip amb la comanda nfs-kernel-server
+
+<img width="728" height="397" alt="image" src="https://github.com/user-attachments/assets/15421de3-2640-48ea-b712-7fcb9359df0e" />
+
+<img width="742" height="419" alt="image" src="https://github.com/user-attachments/assets/cd36d944-f055-47db-9c09-cb1d257136f9" />
+
+<img width="712" height="450" alt="image" src="https://github.com/user-attachments/assets/6ff23d64-d4bc-4627-b458-86abf79926a3" />
+
+<img width="735" height="251" alt="image" src="https://github.com/user-attachments/assets/510dae87-3a42-43ff-8365-fa22c31e1961" />
+
+<img width="727" height="285" alt="image" src="https://github.com/user-attachments/assets/735a131b-a0e8-41e6-b58d-296b0efd4959" />
+
+<img width="1019" height="427" alt="image" src="https://github.com/user-attachments/assets/fb745e2e-855c-4be4-ab47-db9e47e49835" />
+
+<img width="739" height="414" alt="image" src="https://github.com/user-attachments/assets/2aa2530b-6a2f-4038-a970-70e296e2a5e2" />
+
+<img width="570" height="226" alt="image" src="https://github.com/user-attachments/assets/36e52f34-5062-4f9a-b7c7-304be87bf5a5" />
+
+<img width="730" height="425" alt="image" src="https://github.com/user-attachments/assets/d001a32c-f38a-4016-a0d4-cca416b2b9e3" />
+
+<img width="565" height="405" alt="image" src="https://github.com/user-attachments/assets/97242abd-3217-4b0e-9e9e-6b24e760b193" />
+
+<img width="575" height="138" alt="image" src="https://github.com/user-attachments/assets/b7c6583f-6483-465b-ad60-c631874c113f" />
+
+
+
+
+
+
 
 
 
