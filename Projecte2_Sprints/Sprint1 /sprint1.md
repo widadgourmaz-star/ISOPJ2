@@ -1,18 +1,15 @@
-### Instal·lació, Configuració Inicial i Programari de Base
 
-<img width="954" height="540" alt="image" src="https://github.com/user-attachments/assets/8acbbee8-753d-4758-b2a3-994747931025" />
-
-
-
-<img width="773" height="373" alt="image" src="https://github.com/user-attachments/assets/cb90293e-58e5-46e5-8f8e-c53a0d8831b7" />
 
 # Sprint 1: Instal·lació i Configuració de Windows 11 - Widad
 
 ## Fase 1 – Instal·lació del sistema operatiu
 
+<img width="954" height="540" alt="image" src="https://github.com/user-attachments/assets/8acbbee8-753d-4758-b2a3-994747931025" />
+
 ### Pas 1 – Creació de la VM
 He configurat una nova màquina virtual a VirtualBox anomenada **Windows 11 Widad**. He seleccionat el tipus **Microsoft Windows** i la versió **Windows 11 (64-bit)**.
 
+<img width="773" height="373" alt="image" src="https://github.com/user-attachments/assets/cb90293e-58e5-46e5-8f8e-c53a0d8831b7" />
 ![Configuració inicial de la VM](imatges/1.png)
 
 ### Pas 2 – Recursos de Maquinari
