@@ -80,5 +80,73 @@ He realitzat una prova de cicle de vida d'una aplicació:
 
 ![Aplicació instal·lada](imatges/vscode.png)
 
-<img width="405" height="108" alt="image" src="https://github.com/user-attachments/assets/86fcae6b-8035-4d4b-ab8b-878188da7a26" />
+---
+
+### Fase 2 – Punts de restauració (Detallada)
+
+Aquesta fase és crucial per garantir la seguretat del sistema davant de possibles fallades o configuracions errònies.
+
+* **Pas 5 – Activar la protecció del sistema**: He accedit al Tauler de Control > Sistema > Protecció del sistema. Per defecte estava desactivada, així que he entrat a "Configurar" i he activat la protecció per a la unitat C:.
+* **Pas 6 – Crear punt de restauració manual**: He creat un punt amb el nom **"Widad - Punt Inicial"**. Aquest serà el meu "salvavides" si el Windows deixa de funcionar.
+* **Pas 7 – Prova de restauració**: 
+    1. He creat un fitxer anomenat `PROVA.txt` a l'escriptori.
+    2. He executat la restauració del sistema al punt creat anteriorment.
+    3. He comprovat que, després del reinici, el fitxer ha desaparegut. Això confirma que la restauració és funcional.
+
+---
+
+### Fase 6 – Comandes generals del sistema (Ampliada)
+
+He utilitzat el terminal per extreure informació detallada que no sempre és visible des de la interfície gràfica:
+
+* **Informació d'identitat**:
+    * `hostname`: Mostra el nom oficial de la màquina virtual a la xarxa.
+    * `whoami`: Confirma que l'usuari actiu és **Widad**.
+* **Gestió del sistema**:
+    * `systeminfo`: Genera un informe amb la versió exacta del Windows, el tipus de processador virtual i la memòria RAM lliure.
+    * `tasklist`: Llista tots els processos i serveis que s'estan executant en segon pla. És útil per monitoritzar el rendiment.
+    * `taskkill /F /IM [nom]`: Comanda utilitzada per forçar el tancament de processos que no responen.
+
+---
+
+### Fase 7 – Instal·lació d'aplicacions (Detalls finals)
+
+* **Pas 37 – Ús de la Microsoft Store**: He realitzat una prova d'instal·lació des de la botiga oficial (per exemple, Python o una eina de sistema) per verificar que el compte d'usuari té els permisos necessaris per gestionar programari.
+* **Pas 39 – Desinstal·lació i neteja**: He utilitzat el menú "Aplicacions i característiques" per eliminar **Visual Studio Code**. He comprovat que no queden restes a la carpeta de `Program Files`, assegurant que la desinstal·lació és neta.
+* **Pas 40 – Verificació final**: He utilitzat el cercador de Windows per confirmar que l'aplicació ja no existeix al sistema.
+
+* ---
+
+### Fase 2 – Punts de restauració (Detallada)
+
+Aquesta fase és crucial per garantir la seguretat del sistema davant de possibles fallades o configuracions errònies.
+
+* **Pas 5 – Activar la protecció del sistema**: He accedit al Tauler de Control > Sistema > Protecció del sistema. Per defecte estava desactivada, així que he entrat a "Configurar" i he activat la protecció per a la unitat C:.
+* **Pas 6 – Crear punt de restauració manual**: He creat un punt amb el nom **"Widad - Punt Inicial"**. Aquest serà el meu "salvavides" si el Windows deixa de funcionar.
+* **Pas 7 – Prova de restauració**: 
+    1. He creat un fitxer anomenat `PROVA.txt` a l'escriptori.
+    2. He executat la restauració del sistema al punt creat anteriorment.
+    3. He comprovat que, després del reinici, el fitxer ha desaparegut. Això confirma que la restauració és funcional.
+
+---
+
+### Fase 6 – Comandes generals del sistema (Ampliada)
+
+He utilitzat el terminal per extreure informació detallada que no sempre és visible des de la interfície gràfica:
+
+* **Informació d'identitat**:
+    * `hostname`: Mostra el nom oficial de la màquina virtual a la xarxa.
+    * `whoami`: Confirma que l'usuari actiu és **Widad**.
+* **Gestió del sistema**:
+    * `systeminfo`: Genera un informe amb la versió exacta del Windows, el tipus de processador virtual i la memòria RAM lliure.
+    * `tasklist`: Llista tots els processos i serveis que s'estan executant en segon pla. És útil per monitoritzar el rendiment.
+    * `taskkill /F /IM [nom]`: Comanda utilitzada per forçar el tancament de processos que no responen.
+
+---
+
+### Fase 7 – Instal·lació d'aplicacions (Detalls finals)
+
+* **Pas 37 – Ús de la Microsoft Store**: He realitzat una prova d'instal·lació des de la botiga oficial (per exemple, Python o una eina de sistema) per verificar que el compte d'usuari té els permisos necessaris per gestionar programari.
+* **Pas 39 – Desinstal·lació i neteja**: He utilitzat el menú "Aplicacions i característiques" per eliminar **Visual Studio Code**. He comprovat que no queden restes a la carpeta de `Program Files`, assegurant que la desinstal·lació és neta.
+* **Pas 40 – Verificació final**: He utilitzat el cercador de Windows per confirmar que l'aplicació ja no existeix al sistema.
 
