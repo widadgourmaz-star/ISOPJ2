@@ -13,11 +13,11 @@ En aquest apartat documentem el procés complet de configuració d'un **Controla
 ### Pas 1 – Configuració IP estàtica del servidor
 El primer pas és assignar una adreça IP estàtica al servidor perquè el client pugui trobar-lo sempre a la mateixa adreça. He anat a **Panel de control → Redes e Internet → Conexiones de red** i he configurat el **Protocol TCP/IPv4** amb els valors següents:
 
-* **Adreça IP:** `10.0.2.17`
-* **Màscara de subxarxa:** `255.255.255.0`
-* **Passarel·la:** `10.0.2.1`
+* **Adreça IP:** `10.0.2.14`
 
-![Configuració IP estàtica del servidor](imatges-windows/1.png)
+<img width="456" height="629" alt="image" src="https://github.com/user-attachments/assets/6165ee29-afff-469d-a36b-fdaccd286cd9" />
+
+
 
 ### Pas 2 – Agregar el rol de Active Directory Domain Services
 He obert el **Administrador del servidor** i he accedit al menú **Administrar → Agregar roles y características** per iniciar l'assistent d'instal·lació.
@@ -31,8 +31,9 @@ Dins de l'assistent, he seleccionat el servidor local **WIN-WIDAD2026** amb la I
 
 ### Pas 4 i 5 – Selecció del rol: Servicios de dominio de Active Directory
 A la llista de rols, he marcat **Servicios de dominio de Active Directory**. El sistema ha avisat que calia instal·lar també les eines d'administració (RSAT), les quals he acceptat clicant a **Agregar características**.
+<img width="605" height="387" alt="image" src="https://github.com/user-attachments/assets/7192b285-c534-48e4-a79b-3acd30ba9442" />
 
-![Selecció del rol AD DS](imatges-windows/5.png)
+
 ![Confirmació d'instal·lació de característiques addicionals](imatges-windows/4.png)
 
 ### Pas 6 – Confirmació i inici de la instal·lació
