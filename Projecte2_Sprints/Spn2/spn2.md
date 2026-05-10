@@ -5,6 +5,8 @@
 
 ## Fase 1 – Preparació del sistema
 
+<img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/b1353297-cf4a-40af-89ad-9f8f01496004" />
+
 ### Pas 1 – Afegir un nou disc virtual a la màquina virtual
 Per ampliar l'emmagatzematge de la màquina virtual cal afegir un nou disc des de la configuració de VirtualBox. Accedim a **Configuració → Emmagatzematge** de la màquina virtual. Creem el fitxer `Windows 11 Pro_1.vdi` amb una mida de **5,00 GB**.
 
@@ -17,6 +19,12 @@ Un cop afegit el disc, iniciem Windows i executem `diskmgmt.msc`. El sistema rec
 
 ### Pas 3 – Inicialitzar el disc i crear dues particions: Dades (NTFS) i Portable (FAT32)
 He creat dues particions al Disc 1:
+<img width="478" height="368" alt="image" src="https://github.com/user-attachments/assets/eb12163b-02e2-45e7-945d-76b4877e5f75" />
+
+He assignat la lletra F
+
+<img width="471" height="356" alt="image" src="https://github.com/user-attachments/assets/a4f64492-3fc8-4b69-85cb-0a42494030f8" />
+
 * **Dades (NTFS)**: 3000 MB (3 GB). Aquest format és necessari per suportar quotes i permisos ACL.
 * **Portable (FAT32)**: Espai restant (aprox. 2 GB) per a compatibilitat universal.
 
@@ -26,7 +34,10 @@ He creat dues particions al Disc 1:
 | Permisos ACL | ✅ Sí | ❌ No |
 | Quotes de disc | ✅ Sí | ❌ No |
 
-![Pas 3](imatges-windows/12.png)
+<img width="467" height="327" alt="image" src="https://github.com/user-attachments/assets/93ec7f13-6597-4fe5-833d-00323eb85d8b" />
+
+<img width="464" height="331" alt="image" src="https://github.com/user-attachments/assets/0d0d2404-baf7-44f6-a814-be25b3ed975b" />
+
 
 ### Pas 4 – Assignar lletres i comprovar amb diskpart la configuració
 He verificat la configuració mitjançant `diskpart` al terminal per confirmar que les unitats **E:** (NTFS) i **F:** (FAT32) estan correctament configurades.
