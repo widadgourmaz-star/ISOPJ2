@@ -1,5 +1,7 @@
 # SPRINT 3: ADMINISTRACIÓ DE DOMINIS I SEGURETAT - Windows
 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/6b3c0e59-6503-4b00-b27a-75e6a752c60b" />
+
 ---
 
 # Active Directory: Instal·lació del DC i unió d'un client Windows
