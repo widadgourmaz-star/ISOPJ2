@@ -6,82 +6,69 @@
 
 ## 1. Fonaments Teòrics: L'Arquitectura RAID
 
-En entorns de servidors professionals, la disponibilitat de les dades és crítica. El sistema **RAID** (*Redundant Array of Independent Disks*) és una solució que combina diversos discos físics per formar una única unitat lògica. 
+En entorns de servidors professionals, la disponibilitat de les dades és crítica. El sistema **RAID** (*Redundant Array of Independent Disks*) és una solució que combina diversos discos físics per formar una única unitat lògica per millorar la seguretat i el rendiment.
 
 ### 1.1 Què és el RAID 5 i com funciona?
 El **RAID 5** és un sistema de **Paritat Distribuïda**. És el nivell més utilitzat en empreses perquè ofereix un equilibri perfecte entre cost, velocitat i seguretat.
 
-* **La Paritat (Càlcul XOR):** No és una còpia exacta de la dada. És un càlcul matemàtic. Si tenim dades als Discos A i B, el sistema genera un bit de paritat al Disc C. Si el Disc A es trenca, el sistema fa l'operació a l'inrevés: (Paritat - Disc B = Dada del Disc A).
-* **Capacitat Real:** En un RAID 5 de 3 discos, la capacitat total és la suma de 2 discos; el tercer s'utilitza per magatzemar aquests càlculs de seguretat.
-* **Avantatges:** Millora la velocitat de lectura perquè pot demanar trossos de fitxer a tots els discos alhora.
+* **La Paritat (Càlcul XOR):** No és una còpia exacta de la dada. És un càlcul matemàtic. Si un disc es trenca, el sistema utilitza aquesta informació per reconstruir el que falta.
+* **Capacitat Real:** En un RAID 5 de 3 discos, la capacitat útil segueix la fórmula **(N-1)**. Si tenim 3 discos de 10GB, tindrem 20GB de dades i 10GB per a la paritat.
+* **Avantatges:** Millora la velocitat de lectura perquè demana fragments de dades a tots els discos simultàniament.
 
 | Característica | RAID 0 | RAID 1 | RAID 5 |
 | :--- | :--- | :--- | :--- |
 | **Tolerància a fallades** | ❌ Cap | ✅ 1 o més discos | ✅ **Exactament 1 disc** |
-| **Ús d'espai** | 100% | 50% | **N-1 (molt eficient)** |
+| **Ús d'espai** | 100% | 50% | **N-1 (Eficaç)** |
 
 ---
 
-## 2. Fase de Configuració Tècnica
+## 2. Fase de Configuració Tècnica Pas a Pas
 
-### Pas 1: Preparació del Maquinari a VirtualBox
-Com que estem en un entorn de proves, he hagut de simular la instal·lació de 3 discos físics. He configurat 3 unitats **VDI de 10 GB** cadascuna. És vital que les mides siguin idèntiques; si un disc fos més petit, el RAID es limitaria a la mida del més petit de tots.
+### Pas 1 – Preparació del Maquinari a VirtualBox
+He configurat **3 unitats VDI de 10 GB** cadascuna a la configuració d'emmagatzematge de VirtualBox per simular els discos físics reals que formaran el RAID.
 
 ![Configuració de discos](imatges-windows/1.png)
 
-### Pas 2 i 3: Inicialització i Estil GPT
-He accedit a l'Administrador de Discos (`diskmgmt.msc`). Windows Server ha detectat els nous dispositius i m'ha demanat inicialitzar-los. He triat **GPT (GUID Partition Table)**. 
-> **Per què GPT?** Perquè és l'estàndard actual per a sistemes moderns, és més segur contra corrupcions i permet volums de més de 2TB (encara que aquí fem servir 10GB).
+### Pas 2 i 3 – Inicialització i Estil GPT
+He obert el Gestor de Discs (`diskmgmt.msc`). Windows Server ha detectat els nous dispositius i els he inicialitzat fent servir l'estil **GPT (GUID Partition Table)**, que és més robust i modern que el clàssic MBR.
 
 ![Inicialització GPT](imatges-windows/3.png)
 
-### Pas 4, 5 i 6: Conversió a Discos Dinàmics
-Aquest és el pas "màgic". Un disc **Bàsic** no sap treballar en equip. Al convertir-los a **Dinàmics**, Windows crea una capa de programari que permet que els tres discos es comuniquin entre ells per repartir la informació i la paritat de forma automàtica.
+### Pas 4, 5 i 6 – Conversió a Discos Dinàmics
+He convertit els 3 discos a **Dinàmics**. Aquest pas és obligatori a Windows per poder crear volums que s'estenguin a través de diversos discos físics (RAID per programari).
 
 ![Conversió a Dinàmics](imatges-windows/6.png)
 
-### Pas 7, 8 i 9: Creació del Volum Lògic
-He seleccionat "Nuevo volumen RAID-5". He afegit els 3 discos dinàmics a l'array. L'assistent m'ha confirmat que, tot i tenir 30 GB físics (3x10), només en tindré **20 GB útils**. Això confirma que la teoria del **N-1** s'està aplicant correctament.
+### Pas 7, 8 i 9 – Creació del Volum RAID 5
+He seleccionat "Nuevo volumen RAID-5" i he afegit els 3 discos. El sistema m'ha confirmat que l'espai total disponible és de **20 GB**, reservant automàticament 10 GB per a la paritat.
 
 ![Creació del volum](imatges-windows/9.png)
 
-### Pas 10, 11 i 12: Sistema de Fitxers NTFS
-He assignat la lletra **R:** i he formatat en **NTFS**. He posat l'etiqueta `RAID5-Widad`. Durant aquest procés, el sistema realitza una "Sincronització", que consisteix en escriure els primers bits de paritat per garantir que el RAID neixi sa.
+### Pas 10, 11 i 12 – Sistema de Fitxers i Format
+He assignat la lletra **R:** i he formatat la unitat en **NTFS** amb l'etiqueta `RAID5-Widad`. Durant aquest procés, el sistema realitza una sincronització inicial per preparar la redundància.
 
 ![Formatant la unitat](imatges-windows/11.png)
 
 ---
 
-## 3. Proves de Resiliència i Simulació de Fallades
+## 3. Simulació de Fallades i Resiliència
 
-### Pas 17 i 18: Fallada d'un disc (Estat Degradat)
-He simulat una avaria posant el **Disc 1 fora de línia**. Windows ha canviat l'estat a **"Error de redundancia"**. 
-* **Resultat:** Els fitxers seguien allà. El processador del servidor estava treballant extra per reconstruir les dades del Disc 1 usant la paritat dels Discos 2 i 3. El sistema és lent, però les dades estan segures.
+### Pas 17, 18 i 19 – Primera Fallada (Estat Degradat)
+He simulat una avaria posant el **Disc 1 fora de línia**. L'estat ha canviat a **"Error de redundancia"**. Malgrat la fallada, he comprovat que encara es pot accedir als fitxers perquè el sistema els reconstrueix en temps real amb la paritat.
 
 ![Estat degradat](imatges-windows/19.png)
 
-### Pas 20 i 21: Segona fallada (Col·lapse)
-He apagat el **Disc 2**. En aquest moment, el RAID ha mort. Amb només un disc viu no es pot reconstruir la informació perduda de dos discos. Això ens ensenya que en un RAID 5, quan un disc falla, s'ha de substituir **immediatament**.
+### Pas 20 i 21 – Segona Fallada (Col·lapse)
+He desactivat un segon disc (**Disc 2**). En aquest moment, el RAID 5 deixa de funcionar (estat **Error**). Això confirma que el sistema només pot suportar la pèrdua d'un disc alhora.
 
 ![RAID col·lapsat](imatges-windows/22.png)
 
-### Pas 22 al 27: Recuperació i Resincronització (Rebuild)
-He tornat a posar els discos "En línia". He seleccionat **Reactivar disco**. Windows ha començat la resincronització (recalculant tota la paritat). En acabar, l'estat ha tornat a ser **Correcto** i he comprovat que la carpeta `Prova-Raid5Widad` tenia tots els fitxers sans.
+### Pas 22 al 27 – Recuperació i Resincronització
+He tornat a posar els discos en línia i he seleccionat **Reactivar disco**. Windows ha iniciat la resincronització per regenerar les dades i tornar a l'estat **Correcto**. He verificat que tota la informació s'ha recuperat sense pèrdues.
+
+![Resincronització](imatges-windows/26.png)
 
 ---
 
-## 4. Conclusions Finals
-Aquesta pràctica és fonamental per entendre que la seguretat de les dades no depèn de tenir discos "bons", sinó de tenir una bona **estratègia de redundància**. El RAID 5 és la millor eina per optimitzar el pressupost i la seguretat en qualsevol servidor de dades modern.
-Sprint 4: Infraestructura d'Emmagatzematge i Seguretat de Dades
-Implementació i Gestió de Volums RAID 5 (Widad)
-1. Fonaments Teòrics: L'Arquitectura RAID
-En entorns de servidors professionals, la disponibilitat de les dades és crítica. El sistema RAID (Redundant Array of Independent Disks) és una solució que combina diversos discos físics per formar una única unitat lògica.
-
-1.1 Què és el RAID 5 i com funciona?
-El RAID 5 és un sistema de Paritat Distribuïda. És el nivell més utilitzat en empreses perquè ofereix un equilibri perfecte entre cost, velocitat i seguretat.
-
-La Paritat (Càlcul XOR): No és una còpia exacta de la dada. Si el Disc A es trenca, el sistema fa l'operació a l'inrevés per recuperar la informació.
-
-Capacitat Real: En un RAID 5 de 3 discos, la capacitat total és la suma de 2 discos; el tercer s'utilitza per magatzemar la seguretat.
-
-Avantatges: Millora la velocitat de lectura perquè demana dades a tots els discos alhora.
+## 4. Conclusions
+El RAID 5 és una solució excel·lent per a servidors de dades, ja que permet optimitzar l'espai d'emmagatzematge mentre garanteix que el sistema segueixi funcionant davant d'una fallada física.
