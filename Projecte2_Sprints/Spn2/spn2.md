@@ -66,3 +66,50 @@ He creat el fitxer `script.bat` utilitzant la comanda `xcopy` per automatitzar e
 ```dos
 @echo off
 xcopy C:\Users\%USERNAME% B:\CòpiesUsuaris\%USERNAME% /E /I /Y
+Pas 13 – Obrir gpedit.msc per configurar l'inici de sessió
+He accedit a l'Editor de directives de grup local mitjançant la comanda gpedit.msc i he navegat fins a:
+Configuració d'usuari → Configuració de Windows → Scripts.
+
+Pas 14 – Assignar l'script de l'inici de sessió
+Dins de la secció d'inici de sessió, he agregat la ruta del fitxer .bat creat anteriorment perquè s'executi automàticament cada vegada que un usuari validi la seva sessió.
+
+Fase 4 – Verificació i Processos
+Pas 15 – Comprovació de la còpia
+He verificat que, en iniciar sessió, s'ha creat correctament la subcarpeta corresponent a l'usuari a la unitat B: amb tots els seus fitxers.
+
+Pas 19 – Llistar processos actius
+Mitjançant la comanda tasklist, he generat una llista dels processos actius i he bolcat el resultat en un fitxer de text anomenat processos_inici.txt.
+
+Pas 20 – Identificar processos prescindibles
+He analitzat la llista i he identificat processos com OneDrive.exe, que consumeixen aproximadament 135 MB de RAM de manera innecessària en aquest entorn.
+
+Pas 21 i 22 – Eliminar processos i automatitzar el tancament
+He afegit la següent comanda a l'script d'inici per alliberar memòria RAM de forma automàtica:
+
+DOS
+
+taskkill /IM OneDrive.exe /F
+Pas 23 – Documentació de rendiment
+He constatat que en tancar aquests processos prescindibles s'alliberen entre 300 i 600 MB de RAM, cosa que millora significativament la fluïdesa de la màquina virtual.
+
+Fase 5 – Gestió de permisos (ACLs)
+Pas 24 – Crear la carpeta Projectes
+He creat el directori E:\Projectes per utilitzar-lo com a espai de treball compartit per al grup.
+
+Pas 25 – Assignar permisos al grup Limitats
+He accedit a la configuració de seguretat avançada de la carpeta, he deshabilitat l'herència i he assignat permisos de Control total al grup Limitats.
+
+Pas 26 – Comprovar accés amb alumne1
+He validat que l'usuari alumne1 té permisos suficients per crear, modificar i eliminar fitxers dins de la carpeta sense restriccions.
+
+Pas 27 – Aplicar excepció per alumne2 (Només lectura)
+He utilitzat la comanda icacls per aplicar una restricció específica a l'usuari alumne2:
+
+DOS
+
+icacls "E:\Projectes" /grant:r alumne2:(R)
+Pas 28 – Comprovar l'excepció amb alumne2
+He verificat que l'usuari alumne2 rep un missatge de "Denegació d'accés" en intentar realitzar qualsevol modificació o creació de carpetes, confirmant que només pot llegir el contingut.
+
+Pas 29 – Consultar permisos finals
+He executat icacls "E:\Projectes" per visualitzar la llista de control d'accés (ACL) i confirmar que l'entrada individual de l'usuari té prioritat sobre la del grup.
