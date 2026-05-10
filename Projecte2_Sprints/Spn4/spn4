@@ -72,3 +72,16 @@ He tornat a posar els discos "En línia". He seleccionat **Reactivar disco**. Wi
 
 ## 4. Conclusions Finals
 Aquesta pràctica és fonamental per entendre que la seguretat de les dades no depèn de tenir discos "bons", sinó de tenir una bona **estratègia de redundància**. El RAID 5 és la millor eina per optimitzar el pressupost i la seguretat en qualsevol servidor de dades modern.
+Sprint 4: Infraestructura d'Emmagatzematge i Seguretat de Dades
+Implementació i Gestió de Volums RAID 5 (Widad)
+1. Fonaments Teòrics: L'Arquitectura RAID
+En entorns de servidors professionals, la disponibilitat de les dades és crítica. El sistema RAID (Redundant Array of Independent Disks) és una solució que combina diversos discos físics per formar una única unitat lògica.
+
+1.1 Què és el RAID 5 i com funciona?
+El RAID 5 és un sistema de Paritat Distribuïda. És el nivell més utilitzat en empreses perquè ofereix un equilibri perfecte entre cost, velocitat i seguretat.
+
+La Paritat (Càlcul XOR): No és una còpia exacta de la dada. Si el Disc A es trenca, el sistema fa l'operació a l'inrevés per recuperar la informació.
+
+Capacitat Real: En un RAID 5 de 3 discos, la capacitat total és la suma de 2 discos; el tercer s'utilitza per magatzemar la seguretat.
+
+Avantatges: Millora la velocitat de lectura perquè demana dades a tots els discos alhora.
