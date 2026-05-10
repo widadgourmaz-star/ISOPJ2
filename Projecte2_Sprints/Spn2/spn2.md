@@ -1,106 +1,149 @@
-Sprint 2 – Windows: Discs, Quotes, Scripts, Processos i ACLs (Widad)
-Fase 1 – Preparació del sistema
-Pas 1 – Afegir un nou disc virtual a la màquina virtual
-Per ampliar l'emmagatzematge, he accedit a Configuració → Emmagatzematge de VirtualBox. He creat un nou disc dur virtual anomenat Windows 11 Pro_1.vdi amb una mida virtual de 5,00 GB en format dinàmic.
 
-Pas 2 – Iniciar Windows i obrir Gestió de discs
-He iniciat la VM i he executat diskmgmt.msc. El sistema reconeix el nou Disc 1 (5 GB) amb l'estat "No asignat". Això confirma que el maquinari virtual està ben connectat.
+# Sprint 2 – Windows: Discs, Quotes, Scripts, Processos i ACLs (Widad)
 
-Pas 3 – Inicialitzar el disc i crear les particions Dades i Portable
-He inicialitzat el disc en GPT i he creat dues particions:
+---
 
-Dades (NTFS): He assignat 3000 MB. He triat NTFS perquè és l'únic que suporta quotes i permisos ACL.
+## Fase 1 – Preparació del sistema
 
-Portable (FAT32): He usat l'espai restant. Aquest format és per a compatibilitat amb altres dispositius.
+### Pas 1 – Afegir un nou disc virtual a la màquina virtual
+Per ampliar l'emmagatzematge de la màquina virtual cal afegir un nou disc des de la configuració de VirtualBox. Accedim a **Configuració → Emmagatzematge** de la màquina virtual. Creem el fitxer `Windows 11 Pro_1.vdi` amb una mida de **5,00 GB**.
 
-Pas 4 – Assignar lletres i comprovar amb diskpart
-He obert el CMD i he executat diskpart per verificar que tot és correcte:
+![Pas 1](imatges-windows/1.png)
 
-Unitat E: (Dades - NTFS).
+### Pas 2 – Iniciar Windows i obrir Gestió de discs
+Un cop afegit el disc, iniciem Windows i executem `diskmgmt.msc`. El sistema reconeix el nou **Disc 1** (4,98 GB) amb tot l'espai **No asignat**.
 
-Unitat F: (Portable - FAT32).
+![Pas 2](imatges-windows/2.png)
 
-Fase 2 – Quotes i usuaris
-Pas 5 – Activar quotes de disc a la partició Dades (NTFS)
-A les propietats de la unitat E:, he anat a la pestanya Cuota i he clicat a "Mostrar configuració de cuota" per activar l'administració.
+### Pas 3 – Inicialitzar el disc i crear dues particions: Dades (NTFS) i Portable (FAT32)
+He creat dues particions al Disc 1:
+* **Dades (NTFS)**: 3000 MB (3 GB). Aquest format és necessari per suportar quotes i permisos ACL.
+* **Portable (FAT32)**: Espai restant (aprox. 2 GB) per a compatibilitat universal.
 
-Pas 6 – Establir límit de 300 MB per usuari
-Dins de la configuració de quotes, he establert:
+| Característica | NTFS | FAT32 |
+| :--- | :--- | :--- |
+| Mida màx. fitxer | Il·limitada | 4 GB |
+| Permisos ACL | ✅ Sí | ❌ No |
+| Quotes de disc | ✅ Sí | ❌ No |
 
-Límit d'espai: 300 MB.
+![Pas 3](imatges-windows/12.png)
 
-Nivell d'advertència: 150 KB.
+### Pas 4 – Assignar lletres i comprovar amb diskpart la configuració
+He verificat la configuració mitjançant `diskpart` al terminal per confirmar que les unitats **E:** (NTFS) i **F:** (FAT32) estan correctament configurades.
 
-He marcat l'opció de denegar espai a qui superi el límit.
+![Pas 4](imatges-windows/13.png)
 
-Pas 7 – Crear els usuaris alumne1 i alumne2
-He executat lusrmgr.msc i he creat dos usuaris locals per fer les proves de seguretat.
+---
 
-Pas 8 – Afegir-los al grup Limitats
-He creat un grup nou anomenat Limitats i hi he afegit els dos alumnes. Això permet aplicar permisos a tots dos a la vegada.
+## Fase 2 – Quotes i usuaris
 
-Pas 9 – Provar la còpia de fitxers (Error 112)
-He intentat crear un fitxer gran amb la comanda fsutil. Com que superava els 300 MB, Windows ha donat l'error d'espai insuficient, demostrant que la quota funciona.
+### Pas 5 – Activar quotes de disc a la partició Dades (NTFS)
+He entrat a les propietats de la unitat **E:** i he accedit a la pestanya **Cuota** per habilitar l'administració d'espai del sistema de fitxers.
 
-Fase 3 – Script de còpia i automatització
-Pas 10 – Afegir tercer disc virtual (Backups)
-He creat un altre disc de 5 GB a VirtualBox per guardar les còpies de seguretat de forma externa.
+![Pas 5](imatges-windows/15.png)
 
-Pas 11 – Crear carpeta CòpiesUsuaris dins Backups
-Dins la nova unitat B:, he creat la carpeta CòpiesUsuaris per centralitzar els backups.
+### Pas 6 – Establir límit de 300 MB per usuari
+He configurat els següents límits:
+* **Limitar espai a:** 300 MB.
+* **Nivell d'advertència:** 150 KB.
+* He activat l'opció de **denegar espai** als usuaris que superin el límit.
 
-Pas 12 – Crear l'script .bat de còpia
-He creat un fitxer de text amb extensió .bat amb el següent codi:
+![Pas 6](imatges-windows/16.png)
 
-DOS
+### Pas 7 – Crear dos usuaris locals: alumne1 i alumne2
+He utilitzat l'eina `lusrmgr.msc` per crear els dos comptes d'usuari locals per a les proves de laboratori.
 
+![Pas 7](imatges-windows/20.png)
+
+### Pas 8 – Afegir-los a un grup nou anomenat Limitats
+He creat el grup **Limitats** i he afegit `alumne1` i `alumne2` com a membres per gestionar els permisos de forma centralitzada.
+
+![Pas 8](imatges-windows/22.png)
+
+### Pas 9 – Provar la còpia de fitxers a Dades per veure com actuen les quotes
+He intentat crear un fitxer gran amb `fsutil`. El sistema ha bloquejat l'operació amb l'**Error 112**, confirmant que la quota de 300 MB és efectiva.
+
+![Pas 9](imatges-windows/24.png)
+
+---
+
+## Fase 3 – Script de còpia i automatització
+
+### Pas 10 – Afegir tercer disc virtual (Backups)
+He afegit un tercer disc de 5 GB a VirtualBox per destinar-lo a les còpies de seguretat (Unitat **B:**).
+
+### Pas 11 – Crear carpeta CòpiesUsuaris dins Backups
+He creat la carpeta `B:\CòpiesUsuaris` per organitzar els backups de cada perfil.
+
+### Pas 12 – Crear un script .bat de còpia
+He creat el fitxer `script.bat` amb la següent comanda:
+```dos
 @echo off
 xcopy C:\Users\%USERNAME% B:\CòpiesUsuaris\%USERNAME% /E /I /Y
-Pas 13 – Obrir gpedit.msc per configurar l'inici de sessió
-He executat gpedit.msc i he navegat fins a: Configuració d'usuari → Configuració de Windows → Scripts (Inici de sessió).
 
-Pas 14 – Assignar l'script
-He seleccionat el fitxer .bat que he creat. Ara, cada cop que un alumne entri, els seus fitxers es copiaran automàticament al disc B:.
+```
 
-Fase 4 – Verificació i Processos
-Pas 15 – Comprovació de la còpia
-He reiniciat sessió i he comprovat que a B:\CòpiesUsuaris\alumne1 ja apareixen totes les carpetes del seu perfil.
+### Pas 13 – Obrir gpedit.msc per configurar l'inici de sessió
 
-Pas 19 – Llistar processos actius
-Amb la comanda tasklist, he generat un fitxer anomenat processos_inici.txt per analitzar què s'està executant.
+He accedit a la directiva de grup: **Configuració d'usuari → Configuració de Windows → Scripts (Inici de sessió)**.
 
-Pas 20 – Identificar processos prescindibles
-He vist que OneDrive.exe consumeix uns 135 MB. En una màquina virtual sense internet real, aquest procés no serveix de res.
+### Pas 14 – Assignar l'script de l'inici de sessió
 
-Pas 21 i 22 – Eliminar processos i automatitzar
-He modificat l'script .bat anterior afegint:
+He agregat la ruta del fitxer `.bat` perquè s'executi automàticament en cada inici de sessió d'usuari.
 
-DOS
+---
 
-taskkill /IM OneDrive.exe /F
-Això fa que la màquina vagi molt més ràpida en iniciar sessió.
+## Fase 4 – Verificació i Processos
 
-Pas 23 – Documentació de rendiment
-He calculat que eliminant processos com OneDrive o Teams, podem alliberar fins a 600 MB de RAM, vital per a VMs de 4 GB.
+### Pas 15 – Comprovació de la còpia
 
-Fase 5 – Gestió de permisos (ACLs)
-Pas 24 – Crear la carpeta Projectes
-Dins de la unitat E:, he creat la carpeta Projectes.
+He verificat que a la unitat **B:** s'ha creat la subcarpeta de l'usuari amb tots els seus fitxers després d'iniciar la sessió.
 
-Pas 25 – Assignar permisos al grup Limitats
-He entrat a Seguretat Avançada, he clicat a Deshabilitar herència i he donat Control total al grup Limitats.
+### Pas 19 – Llistar processos actius
 
-Pas 26 – Comprovar accés amb alumne1
-L'alumne 1 ha pogut crear un fitxer anomenat hey.txt, confirmant que té permisos d'escriptura.
+Amb la comanda `tasklist`, he llistat els processos i he guardat el resultat al fitxer `processos_inici.txt`.
 
-Pas 27 – Aplicar excepció per alumne2 (Només lectura)
-He usat la comanda icacls per fer una excepció individual:
+### Pas 20 – Identificar processos prescindibles
 
-DOS
+He identificat que **OneDrive.exe** consumeix uns 135 MB de RAM innecessàriament a la màquina virtual.
 
+### Pas 21 i 22 – Eliminar processos i automatitzar el tancament
+
+He afegit la comanda `taskkill /IM OneDrive.exe /F` a l'script d'inici per alliberar memòria RAM automàticament.
+
+### Pas 23 – Documentació de rendiment
+
+He analitzat que en tancar processos prescindibles alliberem entre **300 i 600 MB de RAM**, millorant el rendiment de la VM.
+
+---
+
+## Fase 5 – Gestió de permisos (ACLs)
+
+### Pas 24 – Crear la carpeta Projectes
+
+He creat el directori `E:\Projectes` per gestionar els permisos compartits.
+
+### Pas 25 – Assignar permisos al grup Limitats
+
+He accedit a la seguretat avançada, he **deshabilitat l'herència** i he assignat **Control total** al grup **Limitats**.
+
+### Pas 26 – Comprovar accés amb alumne1
+
+He comprovat que l'usuari `alumne1` pot crear i modificar fitxers sense restriccions a la carpeta.
+
+### Pas 27 – Aplicar excepció per alumne2 (Només lectura)
+
+He utilitzat la comanda `icacls` per restringir l'accés a `alumne2` malgrat ser del grup:
+
+```dos
 icacls "E:\Projectes" /grant:r alumne2:(R)
-Pas 28 – Comprovar l'excepció amb alumne2
-He intentat crear una carpeta amb l'alumne 2 i ha sortit el missatge de "Denegació d'accés". L'excepció funciona!
 
-Pas 29 – Consultar permisos finals
-He executat icacls "E:\Projectes" per veure l'estat final. L'entrada d'usuari (alumne2:R) té prioritat sobre la del grup, per això no pot escriure.
+```
+
+### Pas 28 – Comprovar l'excepció amb alumne2
+
+He verificat que `alumne2` rep un error de **"Denegació d'accés"** en intentar escriure, confirmant que només pot llegir.
+
+### Pas 29 – Consultar permisos finals
+
+He executat `icacls "E:\Projectes"` per confirmar que l'entrada individual d'usuari té prioritat sobre la del grup.
