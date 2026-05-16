@@ -61,7 +61,8 @@ Despres de insl.lar , he tret espnya com pais o regio
 
 <img width="848" height="589" alt="image" src="https://github.com/user-attachments/assets/b03deb44-2f77-4701-829e-48163a752b70" />
 
-<img width="864" height="635" alt="image" src="https://github.com/user-attachments/assets/d65488db-e276-416b-b8a4-75549a71e84f" />
+<img width="1024" height="753" alt="image" src="https://github.com/user-attachments/assets/df225ec1-3281-4b59-8f96-b249b500087d" />
+
 
 
 ## Fase 4 – Gestor d'arrencada (bcdedit)
