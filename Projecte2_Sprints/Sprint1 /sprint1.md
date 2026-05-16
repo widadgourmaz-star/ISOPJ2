@@ -9,8 +9,8 @@
 ### Pas 1 – Creació de la VM
 He configurat una nova màquina virtual a VirtualBox anomenada **Windows 11 Widad**. He seleccionat el tipus **Microsoft Windows** i la versió **Windows 11 (64-bit)**.
 
-<img width="773" height="373" alt="image" src="https://github.com/user-attachments/assets/cb90293e-58e5-46e5-8f8e-c53a0d8831b7" />
-![Configuració inicial de la VM](imatges/1.png)
+<img width="849" height="425" alt="image" src="https://github.com/user-attachments/assets/e013b533-cbba-43fb-ac68-59de217b5a70" />
+
 
 ### Pas 2 – Recursos de Maquinari
 He assignat els recursos necessaris perquè el sistema funcioni correctament:
@@ -21,7 +21,17 @@ He assignat els recursos necessaris perquè el sistema funcioni correctament:
 
 <img width="841" height="448" alt="image" src="https://github.com/user-attachments/assets/171bc872-a8be-4d1d-8ef0-abe551ddf587" />
 
----
+---<img width="836" height="443" alt="image" src="https://github.com/user-attachments/assets/0c101df5-44ef-49f1-993a-6821377c0dc3" />
+
+<img width="654" height="269" alt="image" src="https://github.com/user-attachments/assets/89929ef3-5730-4b97-ab3c-fd80062b410d" />
+
+<img width="647" height="458" alt="image" src="https://github.com/user-attachments/assets/742d6282-9870-4117-89e5-0bffa81af693" />
+
+Despres de insl.lar , he tret espnya com pais o regio 
+
+<img width="848" height="589" alt="image" src="https://github.com/user-attachments/assets/b03deb44-2f77-4701-829e-48163a752b70" />
+
+
 
 ## Fase 3 – Llicències de Windows
 
@@ -33,7 +43,17 @@ He consultat l'estat d'activació del sistema a la configuració. Aquí teniu la
 | **Retail** | Comprada a la botiga. Es pot transferir a un altre equip. | ~259 € (Pro) |
 | **Volume** | Per a empreses i centres educatius. | Variable |
 
----
+---<img width="675" height="537" alt="image" src="https://github.com/user-attachments/assets/f888094f-00ac-491b-9472-f51215046e13" />
+
+He configurat l'idioma, he seleccionat español.
+
+<img width="691" height="515" alt="image" src="https://github.com/user-attachments/assets/1bcc5bc5-1db0-41f8-8234-2e7cf95e6199" />
+
+Aqui he seleccionat la configuracio de instal.lacio 
+
+<img width="673" height="535" alt="image" src="https://github.com/user-attachments/assets/8bcb16db-7d8f-4306-b905-92194fcc9881" />
+Despres la 
+<img width="611" height="258" alt="image" src="https://github.com/user-attachments/assets/a200834d-004c-4d7b-a421-dc500078534d" />
 
 ## Fase 4 – Gestor d'arrencada (bcdedit)
 
