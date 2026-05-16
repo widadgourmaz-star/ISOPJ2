@@ -18,7 +18,8 @@ He assignat els recursos necessaris perquè el sistema funcioni correctament:
 * **Processador:** 2 CPUs.
 * **EFI:** Activat (obligatori per a Windows 11).
 
-![Hardware assignat](imatges/2.png)
+
+<img width="841" height="448" alt="image" src="https://github.com/user-attachments/assets/171bc872-a8be-4d1d-8ef0-abe551ddf587" />
 
 ---
 
