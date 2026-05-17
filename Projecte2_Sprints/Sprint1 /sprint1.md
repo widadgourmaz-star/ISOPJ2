@@ -61,7 +61,24 @@ Despres de insl.lar , he tret espnya com pais o regio
 
 <img width="848" height="589" alt="image" src="https://github.com/user-attachments/assets/b03deb44-2f77-4701-829e-48163a752b70" />
 
-<img width="1024" height="753" alt="image" src="https://github.com/user-attachments/assets/df225ec1-3281-4b59-8f96-b249b500087d" />
+<img width="891" height="480" alt="image" src="https://github.com/user-attachments/assets/81f3e65f-5007-4b35-828e-1efca3d36513" />
+
+<img width="913" height="476" alt="image" src="https://github.com/user-attachments/assets/93b83819-fffd-4c55-ae4f-967660b80ad7" />
+
+he ficat la contrasenya widad@123
+
+<img width="563" height="354" alt="image" src="https://github.com/user-attachments/assets/1275c099-f12b-4a6e-b52c-1296e6da6d47" />
+
+Ara veurem que windows aranca corectament
+
+<img width="994" height="753" alt="image" src="https://github.com/user-attachments/assets/b195eb85-6266-41ab-91aa-698f0ef70d6d" />
+
+<img width="1013" height="687" alt="image" src="https://github.com/user-attachments/assets/0126a048-5d5e-4015-b38e-51bb8cf922b4" />
+
+### Fase 2 – Punts de restauració
+
+<img width="723" height="398" alt="image" src="https://github.com/user-attachments/assets/d421ba7d-5204-4695-b917-ba9fb8733bf1" />
+
 
 
 
@@ -145,36 +162,4 @@ He utilitzat el terminal per extreure informació detallada que no sempre és vi
 
 * ---
 
-### Fase 2 – Punts de restauració (Detallada)
-
-Aquesta fase és crucial per garantir la seguretat del sistema davant de possibles fallades o configuracions errònies.
-
-* **Pas 5 – Activar la protecció del sistema**: He accedit al Tauler de Control > Sistema > Protecció del sistema. Per defecte estava desactivada, així que he entrat a "Configurar" i he activat la protecció per a la unitat C:.
-* **Pas 6 – Crear punt de restauració manual**: He creat un punt amb el nom **"Widad - Punt Inicial"**. Aquest serà el meu "salvavides" si el Windows deixa de funcionar.
-* **Pas 7 – Prova de restauració**: 
-    1. He creat un fitxer anomenat `PROVA.txt` a l'escriptori.
-    2. He executat la restauració del sistema al punt creat anteriorment.
-    3. He comprovat que, després del reinici, el fitxer ha desaparegut. Això confirma que la restauració és funcional.
-
----
-
-### Fase 6 – Comandes generals del sistema (Ampliada)
-
-He utilitzat el terminal per extreure informació detallada que no sempre és visible des de la interfície gràfica:
-
-* **Informació d'identitat**:
-    * `hostname`: Mostra el nom oficial de la màquina virtual a la xarxa.
-    * `whoami`: Confirma que l'usuari actiu és **Widad**.
-* **Gestió del sistema**:
-    * `systeminfo`: Genera un informe amb la versió exacta del Windows, el tipus de processador virtual i la memòria RAM lliure.
-    * `tasklist`: Llista tots els processos i serveis que s'estan executant en segon pla. És útil per monitoritzar el rendiment.
-    * `taskkill /F /IM [nom]`: Comanda utilitzada per forçar el tancament de processos que no responen.
-
----
-
-### Fase 7 – Instal·lació d'aplicacions (Detalls finals)
-
-* **Pas 37 – Ús de la Microsoft Store**: He realitzat una prova d'instal·lació des de la botiga oficial (per exemple, Python o una eina de sistema) per verificar que el compte d'usuari té els permisos necessaris per gestionar programari.
-* **Pas 39 – Desinstal·lació i neteja**: He utilitzat el menú "Aplicacions i característiques" per eliminar **Visual Studio Code**. He comprovat que no queden restes a la carpeta de `Program Files`, assegurant que la desinstal·lació és neta.
-* **Pas 40 – Verificació final**: He utilitzat el cercador de Windows per confirmar que l'aplicació ja no existeix al sistema.
 
